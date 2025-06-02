@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Apps Collection</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-title">JavaScript Apps</div>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#" onclick="showApp('multiplier')">Temperature Converter</a></li>
+                <li><a href="#" onclick="showApp('magic8ball')">Magic 8 Ball</a></li>
+                <li><a href="#" onclick="showApp('tasklist')">Task List</a></li>
+                <li><a href="#" onclick="showApp('timer')">Timer</a></li>
+                <li><a href="#" onclick="showApp('nato')">NATO Converter</a></li>
+                <li><a href="#" onclick="showApp('calculator')">Scientific Calculator</a></li>
+                <li><a href="#" onclick="showApp('contacts')">Contacts</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Temperature Converter App (Replacing Number Multiplier) -->
+        <div id="multiplier-app" class="app-section active">
+            <div class="container">
+                <h1>Temperature Converter</h1>
+                <div class="converter-section">
+                    <p>Enter a temperature and select a unit to convert it to.</p>
+                    
+                    <div class="input-group">
+                        <label for="inputTemperature">Enter temperature:</label>
+                        <input type="number" id="inputTemperature" placeholder="Enter temperature">
+                        <select id="unit" onchange="displaySelection()">
+                            <option value="celsius">Celsius</option>
+                            <option value="fahrenheit">Fahrenheit</option>
+                            <option value="kelvin">Kelvin</option>
+                        </select>
+                    </div>
+                    
+                    <div id="selection-display" class="display-area">
+                        Celsius
+                    </div>
+                    
+                    <div class="button-group">
+                        <button onclick="calculateResult()">Convert</button>
+                        <button onclick="clearResult()" class="clear">Clear</button>
+                    </div>
+                    
+                    <div id="calculation-result" class="display-area result">
+                        <!-- Conversion result will be displayed here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Magic 8 Ball App -->
+        <div id="magic8ball-app" class="app-section">
+            <div class="container">
+                <h1>Magic 8 Ball</h1>
+                <input type="text" id="question" placeholder="Ask a question...">
+                <div class="ball" id="ball" onclick="shakeBall()">
+                    <div class="answer-window" id="answer">8</div>
+                </div>
+                <div class="button-group">
+                    <button id="shake-button" onclick="shakeBall()">Shake</button>
+                    <button id="reset-button" onclick="resetBall()">Reset</button>
+                </div>
+                <div id="question-display" class="question-display"></div>
+                <div id="history-container" class="history-container">
+                    <h2>Question History <button id="clear-history-button" onclick="clearHistory()">Clear History</button></h2>
+                    <ul id="question-history" class="question-history"></ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Task List App -->
+        <div id="tasklist-app" class="app-section">
+            <div class="container">
+                <h1>Tasks For Today with Wellness Suggestions</h1>
+                <div class="app-description">
+                    <p>This app helps you organize tasks. Add your tasks with a priority (1-5), and use the "Random Task" button for wellness suggestions!</p>
+                </div>
+                
+                <div class="input-container">
+                    <div class="input-group">
+                        <input type="text" id="task-input" placeholder="Enter a wellness task...">
+                        <select id="priority-input">
+                            <option value="1">Priority 1</option>
+                            <option value="2">Priority 2</option>
+                            <option value="3" selected>Priority 3</option>
+                            <option value="4">Priority 4</option>
+                            <option value="5">Priority 5</option>
+                        </select>
+                    </div>
+                    <div class="button-group">
+                        <button id="add-button" onclick="addTask()">Add Task</button>
+                        <button id="clear-input-button" onclick="clearInput()">Clear Input</button>
+                        <button id="random-task-button" onclick="addRandomTask()">Random Task</button>
+                    </div>
+                </div>
+                <div class="tasks-container">
+                    <h2>Your Tasks <button id="clear-tasks-button" onclick="clearTasks()">Clear All Tasks</button></h2>
+                    <ul id="task-list" class="task-list"></ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Timer App -->
+        <div id="timer-app" class="app-section">
+            <div class="container">
+                <h1>Motivational Countdown Timer</h1>
+                <div class="timer" id="timer">00:00</div>
+                <div class="motivation" id="motivation">Enter seconds and start the timer for motivation!</div>
+                <div class="controls">
+                    <input type="number" id="seconds" min="1" placeholder="Seconds" value="30">
+                    <div class="button-group">
+                        <button id="startBtn" onclick="startCountdown()">Start</button>
+                        <button id="resetBtn" onclick="resetTimer()">Reset</button>
+                    </div>
+                </div>
+                <div class="timer-status" id="status"></div>
+            </div>
+        </div>
+
+        <!-- NATO Converter App -->
+        <div id="nato-app" class="app-section">
+            <div class="container">
+                <h1>NATO Phonetic Alphabet Converter</h1>
+                <div class="input-group">
+                    <input type="text" id="inputString" placeholder="Enter text to convert">
+                </div>
+                <div class="button-group">
+                    <button id="verbalize" onclick="verbalize()">Convert</button>
+                    <button id="clearNATO" onclick="clearNATOInputs()">Clear</button>
+                </div>
+                <div class="result-group">
+                    <h2>NATO Result:</h2>
+                    <div id="natoResult" class="display-area"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scientific Calculator App -->
+        <div id="calculator-app" class="app-section">
+            <div class="container">
+                <h1>Scientific Calculator</h1>
+                <div class="calculator">
+                    <div class="calculator-display">
+                        <input type="text" id="display" readonly>
+                    </div>
+                    <div class="calculator-keys">
+                        <!-- Calculator buttons, similar to your code -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contacts App -->
+        <div id="contacts-app" class="app-section">
+            <div class="container">
+                <h1>Contacts Management App</h1>
+                <div class="tabs">
+                    <div class="tab active" onclick="switchTab('view')">View Contacts</div>
+                    <div class="tab" onclick="switchTab('add')">Add Contact</div>
+                    <div class="tab" onclick="switchTab('json')">JSON Data</div>
+                </div>
+                <div id="view-contacts" class="tab-content active">
+                    <div id="contacts-list"></div>
+                </div>
+                <div id="add-contact" class="tab-content">
+                    <form id="contact-form" onsubmit="return addContact()">
+                        <!-- Form fields for adding a contact -->
+                    </form>
+                </div>
+                <div id="json-view" class="tab-content">
+                    <h2>JSON Data</h2>
+                    <div id="json-content"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="apps.js"></script>
+</body>
+</html>
